@@ -198,6 +198,7 @@ details.fold>.dbody{margin-top:14px}
 .alg h3{font-size:15.5px;line-height:1.3;font-weight:700}.alg small{color:var(--mut);font-size:12.5px;font-weight:500}
 
 /* Pengguna */
+.fsk[hidden]{display:none}
 .ustat{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:4px 0 6px}
 .ustat div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px}.ustat b{display:block;font-size:24px;font-weight:800;line-height:1.1}.ustat span{font-size:12.5px;color:var(--mut);font-weight:600}
 .uh{display:flex;gap:12px;align-items:center;margin-bottom:12px}.uh h3{font-size:15.5px;line-height:1.25;margin-bottom:1px}
@@ -321,6 +322,8 @@ details.alg:nth-of-type(5) .ti{background:linear-gradient(135deg,#3ddc9f,#0f9d6b
 .lamp img{display:block;width:100%;height:84px;object-fit:cover}.lamp .fi{height:84px;display:grid;place-items:center;color:var(--pri)}
 .lamp small{display:block;padding:6px 8px;font-size:11.5px;font-weight:700;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rfbn{display:flex;gap:10px;align-items:flex-start;background:var(--red-t);color:var(--red);border-radius:14px;padding:12px 14px;margin:0 0 12px;font-size:13.5px}.rfbn b{display:block}.rfbn ul{margin:4px 0 0 18px;padding:0;color:var(--ink)}
+.cact{display:flex;gap:12px;margin-top:4px}.cact button{background:none;border:0;padding:2px 0;font:inherit;font-size:12px;font-weight:600;color:var(--mut,#64748b);cursor:pointer}.cact .dl{color:#c0392b}.kact{display:flex;gap:8px;align-items:center;margin-top:14px;flex-wrap:wrap}.kact>svg{display:none}
+.rfm .edb{background:var(--card,#fff);color:inherit;border-radius:16px;padding:18px;width:100%;max-width:460px;max-height:88vh;overflow:auto}.edb h2{margin:0 0 12px;font-size:18px}.edb .bt{display:flex;gap:8px;margin-top:12px}.edb .bt .btn{flex:1}
 .rfm{position:fixed;inset:0;z-index:100;background:rgb(10 20 30/.55);display:grid;place-items:center;padding:20px}
 .rfb{background:var(--card);border-radius:22px;padding:22px 20px;max-width:380px;width:100%;box-shadow:0 20px 50px rgb(0 0 0/.35)}
 .rfb .rfi{width:54px;height:54px;border-radius:50%;background:var(--red-t);color:var(--red);display:grid;place-items:center;margin:0 auto 10px}.rfb .rfi .ic{width:28px;height:28px}
@@ -355,6 +358,7 @@ const avc=n=>[...String(n||'')].reduce((a,c)=>a+c.charCodeAt(0),0)%5;
 
 /* ===== Ikon (garis, gaya Lucide) ===== */
 const P={
+'search':'<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
 'bell':'<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>',
 'bell-off':'<path d="M8.7 3A6 6 0 0 1 18 8a21.3 21.3 0 0 0 .6 5"/><path d="M17 17H3s3-2 3-9a4.67 4.67 0 0 1 .3-1.7"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/><path d="m2 2 20 20"/>',
 'camera':'<path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/>',
@@ -425,8 +429,9 @@ const TABS={superadmin:ADMT,koordinator:ADMT,hub:['beranda','kasus','mentoring',
 const DASH=['superadmin','koordinator','hub','stakeholder'];   /* peran yang melihat Dashboard JATRA di Beranda */
 const SHORT={beranda:'Beranda',skrining:'Skrining',kasus:'Kasus',mentoring:'Mentoring',algoritma:'Panduan',pengguna:'Pengguna'};
 const TICON={beranda:'home',skrining:'clipboard-list',kasus:'stethoscope',mentoring:'video',algoritma:'book-open',pengguna:'users'};
-const TTL={beranda:'Beranda',pengguna:'Pengguna & Akses',kasus:'Kasus & Diskusi',kasusBaru:'Ajukan kasus',rujukBaru:'Rujukan klinik',kasusDetail:'Detail kasus',mentoring:'Telementoring & SKP',algoritma:'Panduan Klinis',skrining:'Skrining Komunitas'};
-const SUB={kasusBaru:'kasus',kasusDetail:'kasus',rujukBaru:'kasus'};
+const TTL={beranda:'Beranda',pengguna:'Pengguna & Akses',kasus:'Kasus & Diskusi',kasusBaru:'Ajukan kasus',laporan:'Laporan Kasus',faskes:'Daftar Faskes',rujukBaru:'Rujukan klinik',kasusDetail:'Detail kasus',mentoring:'Telementoring & SKP',algoritma:'Panduan Klinis',skrining:'Skrining Komunitas'};
+const SUB={kasusBaru:'kasus',kasusDetail:'kasus',rujukBaru:'kasus',laporan:'kasus',faskes:'beranda'};
+const FASKES_R=['hub','koordinator','superadmin','stakeholder'];
 const ADM=['superadmin','koordinator'],EM=u=>u.toLowerCase()+'@cardiolink.app',UN=/^[a-z0-9._-]{3,30}$/i;
 const ST={baru:['Menunggu respons','w'],dibahas:['Sedang dibahas',''],selesai:['Selesai','ok']};
 const STS={baru:'Menunggu',dibahas:'Dibahas',selesai:'Selesai'};
@@ -445,6 +450,8 @@ const tpw=(id,b)=>{const i=$(id),s=i.type==='password';i.type=s?'text':'password
 
 /* ===== Masuk, daftar, dan status akun ===== */
 async function boot(){
+  const GP=new URLSearchParams(location.search).get('google');
+  if(GP){history.replaceState(null,'',location.pathname);return waitView(GP==='ok'?'Google berhasil terhubung. Tutup tab ini dan kembali ke aplikasi Cardio Link.':'Gagal menghubungkan Google. Tutup tab ini, kembali ke aplikasi, lalu coba lagi.',GP==='ok'?'check-circle':'alert-triangle')}
   const{data:{session}}=await sb.auth.getSession();
   if(!session)return authView();
   me=session.user;
@@ -454,8 +461,9 @@ async function boot(){
   if(p.status==='pending')return waitView('Pendaftaran Anda sudah terkirim ke Super Admin dan menunggu persetujuan. Silakan masuk lagi setelah disetujui.','clock');
   if(p.status==='rejected')return waitView('Akses akun ini tidak aktif. Hubungi Super Admin.','lock');
   shell();
-  pushSync();
-  if(DEEP&&!deepDone){deepDone=true;history.replaceState(null,'',location.pathname);openCase(+DEEP)}else setTimeout(pushAsk,2500);
+  pushSync();gStatus();
+  const dk=DEEP||PEND;
+  if(dk&&!deepDone){deepDone=true;if(DEEP)history.replaceState(null,'',location.pathname);PEND=null;openCase(+dk)}else setTimeout(pushAsk,2500);
 }
 function waitView(t,ic='clock'){
   $('app').innerHTML=`<div class="phone"><div class="wait">${logo()}<span class="wi">${I(ic)}</span><h2>Akses belum aktif</h2><p class="mut">${t}</p><div class="stack"><button class="btn block" onclick="boot()">${I('refresh-cw')}Cek lagi</button><button class="btn ghost block" onclick="out()">${I('log-out')}Keluar</button></div></div></div>`;
@@ -501,7 +509,7 @@ async function signUp(){
   if(error){b.disabled=false;s.textContent='Kirim pendaftaran';return m(/registered/i.test(error.message)?'Username sudah dipakai.':error.message)}
   await sb.auth.signOut();authView();msg('Pendaftaran terkirim ke Super Admin. Tunggu persetujuan sebelum masuk.',true);
 }
-async function out(){closeSheet();await pushOff(true);await sb.auth.signOut();inv();boot()}
+async function out(){rtOff();closeSheet();await pushOff(true);await sb.auth.signOut();inv();boot()}
 
 /* ===== Kerangka aplikasi: bilah atas, navigasi bawah, lembar akun ===== */
 async function shell(){
@@ -530,7 +538,7 @@ const NOC=['skrining','kasusBaru','rujukBaru'];
 const busy=()=>{const a=document.activeElement,w=$('view');return !!(w&&((a&&w.contains(a)&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName))||w.querySelector('details[open]')))};
 const inv=()=>{CACHE={};bT=0};
 async function go(t){
-  const my=++navId;tab=t;closeSheet();
+  rtOn();const my=++navId;tab=t;closeSheet();
   const nk=SUB[t]||t,key=t==='kasusDetail'?t+cur:t==='kasus'?t+flt:t,hit=NOC.includes(t)?null:CACHE[key],w=$('view');
   document.body.classList.toggle('sub',!!SUB[t]);
   document.querySelectorAll('.tab').forEach(x=>{const on=x.dataset.t===nk;x.classList.toggle('on',on);on?x.setAttribute('aria-current','page'):x.removeAttribute('aria-current')});
@@ -544,6 +552,18 @@ async function go(t){
   if(h!==hit&&!(hit&&busy()))w.innerHTML=h;
   if(endScroll){endScroll=false;scrollTo(0,document.body.scrollHeight)}
 }
+/* --- Realtime: balasan baru muncul tanpa reload --- */
+let rtCh=null,rtUid=null;
+function rtOn(){if(!me||(rtCh&&rtUid===me.id))return;rtOff();rtUid=me.id;
+  rtCh=sb.channel('cl-komentar').on('postgres_changes',{event:'INSERT',schema:'public',table:'case_comments'},async p=>{
+    const m=p.new||{};inv();
+    if(tab==='kasusDetail'&&cur===+m.case_id){
+      if(m.user_id===me.id)return;
+      if(busy()){toast('Ada balasan baru. Kirim atau tutup kolom ketik untuk melihatnya.','ok');return}
+      try{const h=await VIEWS.kasusDetail();if(tab==='kasusDetail'&&cur===+m.case_id&&!busy()){$('view').innerHTML=h;CACHE['kasusDetail'+cur]=h;scrollTo(0,document.body.scrollHeight)}}catch(_){}
+    }else if(m.user_id!==me.id){toast('Balasan baru pada diskusi kasus','ok');if(tab==='kasus'||tab==='beranda')go(tab)}
+  }).subscribe()}
+function rtOff(){try{if(rtCh)sb.removeChannel(rtCh)}catch(_){}rtCh=null;rtUid=null}
 const nav=x=>{if(x==='kasus')flt='semua';go(x)};
 const ck=r=>{if(r.error)throw r.error;return r.data};
 const done=async(r,t,m)=>{if(r.error)return toast(r.error.message,'err');inv();if(m)toast(m,'ok');go(t||tab)};
@@ -605,6 +625,7 @@ async beranda(){
   if(D)loadDash();
   return `<section class="hero"><span class="chip">${I(ROLE_IC[r])}${ROLE[r]}</span><p class="gr">${sal},</p><h1>${esc(prof.nama)}</h1>${prof.faskes?`<p class="hf">${I('hospital')}${esc(prof.faskes)}</p>`:''}<div class="hcta">${cta}</div></section>`
   +(tiles?`<div class="tiles">${tiles}</div>`:'')
+  +(FASKES_R.includes(r)?`<button type="button" class="btn ghost block" style="margin-top:12px" onclick="go('faskes')">${I('hospital')}Daftar faskes terdaftar</button>`:'')
   +`<div class="card"><div class="next">${nx?dblk(nx.waktu):`<span class="dt">${I('calendar')}</span>`}<div style="flex:1;min-width:0"><span class="mut sm">Sesi telementoring berikutnya</span>${nx?`<h3>${esc(nx.judul)}</h3><div class="meta" style="margin-top:6px"><span>${I('clock')}${hari(nx.waktu)}, ${jam(nx.waktu)}</span><span>${I('award')}${nx.skp} SKP</span></div>${ok?`<a class="btn sm" href="${esc(nx.link)}" target="_blank" rel="noopener">${I('external-link')}Gabung sesi</a>`:''}`:`<h3>Belum ada sesi terjadwal</h3>${isH()?`<button class="btn sm ghost" style="margin-top:10px" onclick="go('mentoring')">${I('plus')}Jadwalkan sesi</button>`:''}`}</div></div></div>`
   +(D?`<div id="dash">${CACHE.dash||'<div class="skel"></div><div class="skel"></div>'}</div>`:'')
   +`<details class="card fold" style="margin-top:12px" ${D?'':'open'}><summary><span class="ti pri">${I('activity')}</span>Cara kerja Cardio Link<span class="chev">${I('chevron-right')}</span></summary><div class="dbody"><ol class="tl">${st.map(x=>`<li><b>${x[0]}</b>${x[1]}</li>`).join('')}</ol></div></details>`+credit();
@@ -638,7 +659,7 @@ async kasus(){
     <div class="meta"><span>${I('user')}Pasien ${esc(ps)}</span></div>
     <div class="cf"><span class="av sm av${avc(c.profiles?.nama)}">${esc(ini(c.profiles?.nama))}</span><span class="cfn"><b>${esc(c.profiles?.nama)}</b><small>${esc(c.profiles?.faskes)}</small></span><span class="rep">${I('message-circle','sm')}${(c.case_comments||[]).length}</span></div></article>`};
   return `<p class="lead">${sp?'Kasus pasien Anda dan balasan dari spesialis.':'Kasus dari dokter FKTP yang butuh masukan.'}</p>
-  <div class="chips" role="tablist">${f.map(([k,l])=>`<button class="${flt===k?'on':''}" onclick="flt='${k}';go('kasus')">${l}<i>${k==='semua'?C.length:k==='rujukan'?C.filter(c=>(c.referrals||[]).length).length:C.filter(c=>c.status===k).length}</i></button>`).join('')}</div>`
+  ${prof.role!=='stakeholder'?`<button class="btn ghost block" style="margin-bottom:12px" onclick="go('laporan')">${I('file-text')}Laporan kasus (PDF)</button>`:''}<div class="chips" role="tablist">${f.map(([k,l])=>`<button class="${flt===k?'on':''}" onclick="flt='${k}';go('kasus')">${l}<i>${k==='semua'?C.length:k==='rujukan'?C.filter(c=>(c.referrals||[]).length).length:C.filter(c=>c.status===k).length}</i></button>`).join('')}</div>`
   +(L.length?L.map(card).join(''):empty('stethoscope',C.length?'Tidak ada kasus':'Belum ada kasus',C.length?'Tidak ada kasus pada filter ini.':can?'Mulai dengan mengajukan kasus pertama Anda.':'Kasus dari dokter FKTP akan muncul di sini.',can&&!C.length?`<button class="btn" onclick="go('kasusBaru')">${I('plus')}Ajukan kasus</button>`:''))
   +(can?`<div class="fabw"><button class="fab" onclick="go('kasusBaru')">${I('plus')}Ajukan kasus</button></div>`:'')+'<div class="spacer"></div>';
 },
@@ -711,13 +732,34 @@ async kasusDetail(){
   <div class="card"><div class="kv2">${kv('Pasien',[c.kode_pasien,c.usia&&c.usia+' th',c.jk].filter(Boolean).join(', '))}${c.td?`<div><small>TD terakhir</small><b class="td">${esc(c.td)}</b></div>`:''}${kv('Alamat',c.alamat,'full')}${kv('No HP',c.no_hp)}${kv('No BPJS / NIK',c.no_id)}${kv('Kontrol terakhir di '+KLINIK,c.kontrol_terakhir&&tgl(c.kontrol_terakhir),'full')}${kv('Diagnosis',c.diagnosis,'full')}${kv('Kendala di FKTP',c.kendala,'full')}</div>
    ${c.ringkasan?`<small class="mut" style="font-weight:700">Ringkasan klinis</small><p class="pl" style="margin-top:2px">${esc(c.ringkasan)}</p>`:''}
    ${c.pertanyaan?`<div class="q">${I('message-square')}<div><small>Pertanyaan untuk spesialis</small><p class="pl">${esc(c.pertanyaan)}</p></div></div>`:''}
-   ${(c.lampiran||[]).length?`<small class="mut" style="font-weight:700;display:block;margin-top:12px">Lampiran pemeriksaan</small>${lampHTML(c.lampiran,U)}`:''}${ctl}</div>
+   ${(c.lampiran||[]).length?`<small class="mut" style="font-weight:700;display:block;margin-top:12px">Lampiran pemeriksaan</small>${lampHTML(c.lampiran,U)}`:''}${ctl}${(own||prof.role==='superadmin')?`<div class="kact"><button type="button" class="btn ghost sm" onclick="editCase(${c.id})">Edit kasus</button><button type="button" class="btn danger sm" onclick="delCase(${c.id})">Hapus kasus</button></div>`:''}</div>
   <div class="sec">${I('hospital')}<h2>Rujukan ke ${KLINIK}</h2>${R.length?`<span class="tag">${R.length}</span>`:''}</div>
   ${R.map(refCard).join('')}${canR?`<button class="btn ghost block" style="margin-bottom:12px" onclick="rujukJenis=null;go('rujukBaru')">${I('plus')}Rujuk ke ${KLINIK}</button>`:(R.length?'':`<p class="mut sm">Belum ada rujukan untuk kasus ini.</p>`)}
   <div class="sec">${I('message-circle')}<h2>Diskusi</h2><span class="tag">${M.length}</span></div>
-  <div class="thread">${M.map(m=>{const mine=m.user_id===me.id;return `<div class="cm ${mine?'me':''}">${mine?'':`<span class="av sm av${avc(m.profiles?.nama)}">${esc(ini(m.profiles?.nama))}</span>`}<div class="bub"><div class="bh"><b>${mine?'Anda':esc(m.profiles?.nama)}</b><span>${ROLE[m.profiles?.role]||''}</span></div><p class="pl">${esc(m.isi)}</p><time>${rel(m.created_at)}</time></div></div>`}).join('')||empty('message-circle','Belum ada balasan',H?'Berikan masukan pertama Anda.':'Spesialis akan membalas di sini.')}</div>
+  <div class="thread">${M.map(m=>{const mine=m.user_id===me.id;return `<div class="cm ${mine?'me':''}">${mine?'':`<span class="av sm av${avc(m.profiles?.nama)}">${esc(ini(m.profiles?.nama))}</span>`}<div class="bub"><div class="bh"><b>${mine?'Anda':esc(m.profiles?.nama)}</b><span>${ROLE[m.profiles?.role]||''}</span></div><p class="pl">${esc(m.isi)}</p><time>${rel(m.created_at)}${m.edited_at?' · diedit':''}</time>${(mine||prof.role==='superadmin')?`<div class="cact">${mine?`<button type="button" onclick="editCm(${m.id},${c.id})">Edit</button>`:''}<button type="button" class="dl" onclick="delCm(${m.id})">Hapus</button></div>`:''}</div></div>`}).join('')||empty('message-circle','Belum ada balasan',H?'Berikan masukan pertama Anda.':'Spesialis akan membalas di sini.')}</div>
   <div class="spacer"></div>
   ${canC?`<div class="composer"><textarea id="cm" rows="1" placeholder="${H?'Tulis masukan Anda…':'Tambah informasi atau balas…'}" oninput="grow(this)" aria-label="Balasan"></textarea><button class="send" aria-label="Kirim balasan" onclick="addComment(${c.id})">${I('send')}</button></div>`:''}`;
+},
+async laporan(){
+  const L=(()=>{try{return JSON.parse(LS.g('lapset')||'{}')}catch(e){return{}}})(),all=isH(),at=x=>`value="${esc(x||'')}"`;
+  return `<div class="note">${I('info')}<span>${all?'Laporan memuat <b>semua kasus</b> dari seluruh dokter FKTP.':'Laporan hanya memuat <b>kasus yang Anda ajukan</b>.'} Data pasien (nama, alamat, nomor HP, No BPJS/NIK) dicetak sesuai yang diinputkan pada kasus. Simpan dan bagikan laporan dengan hati-hati.</span></div>
+  <div class="card"><div class="grp">${I('calendar','sm')}Cakupan laporan</div>
+   ${F('lp1','Dari tanggal',{t:'date',opt:1})}${F('lp2','Sampai tanggal',{t:'date',opt:1})}
+   <div class="f"><span class="lbl">Status kasus</span>${seg('lps',[['semua','Semua'],['baru','Menunggu'],['dibahas','Dibahas'],['selesai','Selesai']],'semua','wrap')}</div>
+   <label class="sw"><input type="checkbox" id="lpd" checked><span class="trk"></span><span><b>Sertakan rincian tiap kasus dan diskusi</b><small>Bila dimatikan, laporan hanya berisi tabel rekapitulasi</small></span></label></div>
+  <div class="card"><div class="grp">${I('file-text','sm')}Penanda tangan</div>${F('lk4','No. STR / SIP Anda',{opt:1,at:at(L.str)})}<p class="mut sm" style="margin:0">Kop surat memakai identitas ${KOP.inst} dan sudah tersimpan di sistem. Nomor STR/SIP disimpan di perangkat ini.</p></div>
+  <div class="spacer"></div><div class="bar"><button class="btn block" id="lpb" onclick="makeLaporan()">${I('file-text')}Buat dan unduh PDF</button></div>`;
+},
+async faskes(){
+  if(!FASKES_R.includes(prof.role))return empty('lock','Tidak ada akses','Halaman ini hanya untuk Dokter Spesialis, Koordinator, Super Admin, dan Pemangku Kepentingan.');
+  const[P,C]=await Promise.all([sb.from('profiles').select('id,nama,faskes,kabupaten,role,status').eq('status','approved').then(ck),sb.from('cases').select('user_id,created_at').then(ck)]);
+  const kn=x=>String(x||'').trim().replace(/\s+/g,' '),G={};
+  P.filter(p=>kn(p.faskes)&&!['superadmin','koordinator','stakeholder'].includes(p.role)).forEach(p=>{const k=kn(p.faskes).toLowerCase(),g=G[k]||(G[k]={nama:kn(p.faskes),kab:'',m:[],ids:new Set()});g.m.push(p);g.ids.add(p.id);if(!g.kab&&p.kabupaten)g.kab=p.kabupaten});
+  const L=Object.values(G).map(g=>{const cs=C.filter(c=>g.ids.has(c.user_id));g.n=cs.length;g.last=cs.reduce((a,c)=>c.created_at>a?c.created_at:a,'');return g}).sort((a,b)=>b.n-a.n||a.nama.localeCompare(b.nama,'id'));
+  const dok=L.reduce((a,g)=>a+g.m.length,0),kas=L.reduce((a,g)=>a+g.n,0);
+  return `<div class="ustat" style="grid-template-columns:repeat(3,1fr)"><div><b>${L.length}</b><span>Faskes</span></div><div><b>${dok}</b><span>Peserta aktif</span></div><div><b>${kas}</b><span>Kasus</span></div></div>
+  <div class="f" style="margin-top:12px"><div class="in">${I('search')}<input id="fq" type="search" placeholder="Cari nama faskes atau dokter" oninput="fsFilter()" autocomplete="off"></div></div>
+  <div id="fl">`+(L.map(g=>`<details class="card fold fsk" data-n="${esc((g.nama+' '+g.kab+' '+g.m.map(m=>m.nama).join(' ')).toLowerCase())}"><summary><span class="ti pri">${I('hospital')}</span><span style="flex:1;min-width:0"><b>${esc(g.nama)}</b><small class="mut" style="display:block">${g.m.length} peserta, ${g.n} kasus${g.last?', terakhir '+rel(g.last):''}</small></span><span class="chev">${I('chevron-right')}</span></summary><div class="dbody">${g.kab?`<p class="mut sm" style="margin:0 0 8px">${I('map-pin','sm')} ${esc(g.kab)}</p>`:''}${g.m.map(m=>`<div class="meta" style="margin-bottom:8px"><span>${I(ROLE_IC[m.role]||'user')}<b>${esc(m.nama)}</b>, ${ROLE[m.role]||m.role}</span></div>`).join('')}</div></details>`).join('')||empty('hospital','Belum ada faskes terdaftar','Faskes muncul setelah pengguna disetujui.'))+`</div><p id="fn" class="mut sm" hidden>Tidak ada faskes yang cocok.</p><div class="spacer"></div>`;
 },
 async rujukBaru(){
   const c=ck(await sb.from('cases').select('id,judul,kode_pasien').eq('id',cur).single()),dar=rujukJenis==='darurat';rujukJenis=null;
@@ -752,6 +794,7 @@ async mentoring(){
    ${F('sm','Durasi (menit)',{t:'number',at:'min="15" step="15" value="60" inputmode="numeric"'})}
    ${F('sk','Jumlah SKP',{t:'number',at:'step="0.5" value="1" inputmode="decimal"'})}
    ${F('st','Topik / studi kasus',{opt:1,ta:1,rows:2})}
+   <div class="f"><label for="sn">Kirim notifikasi jadwal ke</label><select id="sn"><option value="pengaju">Pengaju kasus saja</option><option value="semua" selected>Semua pengguna</option><option value="tidak">Tidak kirim notifikasi</option></select></div>
    <button class="btn block" onclick="addSession()">${I('check')}Simpan sesi</button></div></details>`;
   h+=`<div class="sec">${I('calendar')}<h2>Akan datang</h2></div>`+(up.length?up.map(s=>sc(s,false)).join(''):empty('calendar','Belum ada sesi mendatang',isH()?'Jadwalkan sesi pertama dengan tombol di atas.':'Hub akan menjadwalkan sesi berikutnya.'));
   if(past.length)h+=`<div class="sec">${I('clock')}<h2>Sesi sebelumnya</h2></div>`+past.map(s=>sc(s,true)).join('');
@@ -759,7 +802,7 @@ async mentoring(){
 },
 async algoritma(){
   const D=[['gauge','Titrasi antihipertensi kombinasi',['Konfirmasi diagnosis dan kepatuhan minum obat; ukur TD dengan benar.','Mulai ACEi/ARB atau CCB; naikkan dosis bertahap tiap 2–4 minggu.','Belum terkontrol: kombinasikan ACEi/ARB + CCB, lalu tambah tiazid.','Cek kreatinin dan kalium 1–2 minggu setelah memulai atau menaikkan ACEi/ARB.','Rujuk bila TD resisten, ada kerusakan organ target, atau gangguan ginjal bermakna.']],
-  ['heart-pulse','Evaluasi dasar gagal jantung',['Nilai gejala (kelas NYHA), berat badan, edema, TD, nadi, saturasi.','Tanda memburuk: berat naik cepat, sesak bertambah, ortopnea → pertimbangkan rujuk.','Pastikan terapi dasar berjalan (ACEi/ARB, penyekat beta, MRA, SGLT2i) sesuai toleransi.','Pantau fungsi ginjal dan kalium; edukasi pembatasan garam dan cairan.']],
+  ['heart-pulse','Evaluasi dasar gagal jantung',['Nilai gejala (kelas NYHA), berat badan, edema, TD, nadi, saturasi.','Tanda bahaya (red flag) kenaikan berat badan menurut panduan AHA dan protokol klinis gagal jantung: bertambah 0,9 sampai 1,36 kg (sering digenapkan 1 kg) dalam 1 hari (24 jam), atau bertambah 2 sampai 2,3 kg dalam 3 sampai 7 hari. Bila disertai sesak bertambah atau ortopnea, pertimbangkan rujuk.','Pastikan terapi dasar berjalan (ACEi/ARB, penyekat beta, MRA, SGLT2i) sesuai toleransi.','Pantau fungsi ginjal dan kalium; edukasi pembatasan garam dan cairan.']],
   ['activity','Pembacaan EKG pasca-tindakan',['Bandingkan dengan EKG sebelumnya: laju, irama, interval, segmen ST, gelombang T.','Perubahan baru dan keluhan nyeri dada → konsultasikan segera ke Hub.','Dokumentasikan dan kirim gambar EKG sebagai kasus.']],
   ['stethoscope','Nyeri dada pada PJK stabil',['Nilai ciri nyeri: pencetus, lama, respons istirahat/nitrat.','Nyeri tidak khas dan pola tetap: evaluasi penyebab non-kardiak sebelum merujuk.','Pola berubah, nyeri istirahat, atau memberat → rujuk segera.','Lanjutkan statin dan antiplatelet sesuai program.']],
   ['trending-up','Rehabilitasi kardiovaskular',['Skrining kontraindikasi dan stabilitas klinis.','Latihan aerobik intensitas sedang bertahap, sasaran 30 menit, 3–5 kali/minggu.','Hentikan latihan bila nyeri dada, sesak berat, atau pusing.','Kombinasikan dengan nutrisi, berhenti merokok, dan dukungan psikososial.']]];
@@ -783,14 +826,18 @@ async pengguna(){
   +`<div class="sec">${I('users')}<h2>Semua pengguna</h2></div>`+rest.map(row).join('');
 }};
 
+/* ===== Mode aplikasi native (Capacitor) ===== */
+const NATIVE=!!(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform());
+let gNat=false;
+
 /* ===== Google Meet (Google Calendar API) =====
    Isi GOOGLE_CLIENT_ID dengan OAuth Client ID (Web application) dari Google Cloud Console.
    Kosongkan bila fitur ini belum dipakai: form otomatis kembali ke tautan manual. */
 const GOOGLE_CLIENT_ID='186871307760-gfn0emiejsqnh3hmr8dvucfhg75lbjcn.apps.googleusercontent.com';
 const GSCOPE='https://www.googleapis.com/auth/calendar.events';
-const gcfg=()=>!!GOOGLE_CLIENT_ID;
+const gcfg=()=>!!GOOGLE_CLIENT_ID||NATIVE;
 let gTok=null,gExp=0,gCli=null;
-const gOK=()=>!!gTok&&Date.now()<gExp-60000;
+const gOK=()=>NATIVE?gNat:(!!gTok&&Date.now()<gExp-60000);
 function gMark(){const el=$('gst');if(!el)return;el.textContent=gOK()?'Akun Google terhubung':'Belum terhubung';el.className='tag '+(gOK()?'ok':'w')}
 function gToken(){return new Promise((res,rej)=>{
   if(gOK())return res(gTok);
@@ -801,9 +848,16 @@ function gToken(){return new Promise((res,rej)=>{
     gTok=r.access_token;gExp=Date.now()+(+r.expires_in||3600)*1000;LS.s('gconn','1');gMark();res(gTok)};
   gCli.error_callback=e=>rej(new Error(e&&e.type==='popup_failed_to_open'?'Popup login diblokir browser. Izinkan popup untuk situs ini.':'Login Google dibatalkan.'));
   gCli.requestAccessToken({prompt:LS.g('gconn')?'':'consent'})})}
-async function gConnect(){try{await gToken();toast('Google terhubung','ok')}catch(e){toast(e.message,'err')}}
+/* Di aplikasi native, login Google lewat popup diblokir; Meet dibuat oleh Edge Function "google-meet" */
+async function gFn(body){const r=await sb.functions.invoke('google-meet',{body});
+  if(r.error){let m=r.error.message;try{const j=await r.error.context.json();if(j&&j.error)m=j.error}catch(_){}throw new Error(m)}return r.data}
+async function gStatus(){if(!NATIVE)return;try{gNat=!!(await gFn({action:'status'})).connected}catch(e){gNat=false}gMark()}
+async function gConnect(){
+  if(NATIVE){try{const d=await gFn({action:'auth-url'});await Capacitor.Plugins.Browser.open({url:d.url});toast('Selesaikan izin Google di browser, lalu kembali ke aplikasi.')}catch(e){toast(e.message,'err')}return}
+  try{await gToken();toast('Google terhubung','ok')}catch(e){toast(e.message,'err')}}
 const gwait=ms=>new Promise(r=>setTimeout(r,ms));
 async function gMeet({judul,topik,skp,mulai,menit}){
+  if(NATIVE)return (await gFn({action:'create',judul,topik,skp,mulai:mulai.toISOString(),menit})).link;
   const tok=await gToken(),end=new Date(mulai.getTime()+menit*60000);
   const body={summary:judul,description:(topik?topik+'\n\n':'')+'Sesi Telementoring Cardio Link · '+skp+' SKP',
     start:{dateTime:mulai.toISOString(),timeZone:'Asia/Jakarta'},end:{dateTime:end.toISOString(),timeZone:'Asia/Jakarta'},
@@ -821,6 +875,7 @@ function gToggle(){const on=$('sg').checked;$('gbox').hidden=!on;$('slw').hidden
 
 /* ===== Rujukan, red flag, lampiran ===== */
 const KLINIK='Klinik Medika Utama';
+const KOP={inst:'Klinik Medika Utama Kediri',alamat:'Jl. Soekarno Hatta, Darungan, Pare, Kediri',kontak:'Telp. 0354-3104687  |  HP/WA 082218129966'};
 const KLINIK_TEL='';   /* isi nomor telepon klinik format internasional tanpa +, mis. '6281234567890'; kosong = tombol telepon disembunyikan */
 const BUCKET='case-files',MAXF=6;
 const PERIKSA=[['treadmill','Treadmill (uji latih jantung)'],['echo','Ekokardiografi (Echo)'],['niva','NIVA'],['abpm','ABPM (pemantauan tekanan darah 24 jam)'],['holter','Holter (EKG 24 jam)']];
@@ -916,17 +971,45 @@ const refDone=async(id,caseId,owner)=>{const h=v('rh'+id),t=v('rl'+id);
 const VAPID_PUBLIC='';
 const DEEP=new URLSearchParams(location.search).get('kasus');
 let deepDone=false;
-const pushOK=()=>!!VAPID_PUBLIC&&'serviceWorker' in navigator&&'PushManager' in window&&'Notification' in window;
+const pushOK=()=>NATIVE||(!!VAPID_PUBLIC&&'serviceWorker' in navigator&&'PushManager' in window&&'Notification' in window);
 const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
 const standalone=()=>(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;
 const b64u=k=>{const b=(k+'='.repeat((4-k.length%4)%4)).replace(/-/g,'+').replace(/_/g,'/'),r=atob(b);return Uint8Array.from([...r].map(c=>c.charCodeAt(0)))};
-if('serviceWorker' in navigator){
+if(!NATIVE&&'serviceWorker' in navigator){
   addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
   navigator.serviceWorker.addEventListener('message',e=>{const u=e.data&&e.data.open;if(!u||!me)return;try{const k=new URL(u).searchParams.get('kasus');if(k)openCase(+k)}catch(_){}});
 }
-async function pushGet(){if(!pushOK())return null;const r=await navigator.serviceWorker.ready;return r.pushManager.getSubscription()}
+/* --- Notifikasi native (Firebase Cloud Messaging lewat Capacitor) --- */
+const PN=()=>Capacitor.Plugins.PushNotifications;
+let nativeBound=false,PEND=null;
+async function nativeBind(){
+  if(nativeBound)return;nativeBound=true;const P=PN();
+  await P.addListener('registration',async t=>{LS.s('fcmtok',t.value);const r=await sb.rpc('register_fcm',{p_token:t.value,p_platform:Capacitor.getPlatform()});if(r.error)console.warn(r.error.message)});
+  await P.addListener('registrationError',e=>toast('Gagal mendaftarkan notifikasi: '+((e&&e.error)||''),'err'));
+  await P.addListener('pushNotificationReceived',n=>toast((n.title||'Notifikasi')+(n.body?': '+n.body:'')));
+  await P.addListener('pushNotificationActionPerformed',a=>{const d=(a.notification&&a.notification.data)||{},k=d.kasus;if(k&&k!=='0'){if(me)openCase(+k);else PEND=+k}else if(d.tab&&me&&TABS[prof.role].includes(d.tab))go(d.tab)});
+  try{await P.createChannel({id:'default',name:'Cardio Link',description:'Kasus, balasan, dan rujukan',importance:4,visibility:0,vibration:true});
+      await P.createChannel({id:'urgent',name:'Kasus dan rujukan darurat',description:'Kasus segera dan rujukan darurat',importance:5,visibility:0,vibration:true})}catch(_){}}
+async function nativeOn(){
+  const P=PN();await nativeBind();
+  let p=await P.checkPermissions();if(p.receive==='prompt'||p.receive==='prompt-with-rationale')p=await P.requestPermissions();
+  if(p.receive!=='granted')return toast('Izin notifikasi tidak diberikan. Aktifkan lewat pengaturan aplikasi.','err');
+  await P.register();LS.s('fcmon','1');toast('Notifikasi aktif di perangkat ini','ok')}
+if(NATIVE){
+  const AP=Capacitor.Plugins.App;
+  AP.addListener('backButton',()=>{
+    if($('edm')){edClose();return}if($('rfm')){rfClose();return}
+    if(document.body.classList.contains('sheet-open')){closeSheet();return}
+    if(!me)return AP.exitApp();
+    if(SUB[tab])return go(tab==='rujukBaru'?'kasusDetail':SUB[tab]);
+    if(tab!=='beranda')return go('beranda');
+    AP.exitApp()});
+  AP.addListener('appStateChange',s=>{if(s.isActive&&me){gStatus();if(tab==='kasusDetail'&&cur){inv();go('kasusDetail')}else if(tab==='kasus'||tab==='beranda'){inv();go(tab)}}});
+}
+async function pushGet(){if(NATIVE)return LS.g('fcmon')==='1'&&LS.g('fcmtok')?{endpoint:LS.g('fcmtok')}:null;if(!pushOK())return null;const r=await navigator.serviceWorker.ready;return r.pushManager.getSubscription()}
 async function pushSave(sub){const j=sub.toJSON(),r=await sb.rpc('register_push',{p_endpoint:j.endpoint,p_p256dh:j.keys.p256dh,p_auth:j.keys.auth,p_ua:navigator.userAgent.slice(0,200)});if(r.error)throw r.error}
 async function pushOn(){
+  if(NATIVE){try{await nativeOn()}catch(e){toast(friendly(e),'err')}pushRender();return}
   try{
     if(Notification.permission==='denied')return toast('Notifikasi diblokir. Izinkan lewat pengaturan situs di browser.','err');
     if(await Notification.requestPermission()!=='granted')return toast('Izin notifikasi tidak diberikan.','err');
@@ -936,18 +1019,21 @@ async function pushOn(){
   }catch(e){toast(friendly(e),'err')}
   pushRender()}
 async function pushOff(silent){
+  if(NATIVE){try{const t=LS.g('fcmtok');if(t)await sb.rpc('unregister_push',{p_endpoint:t});if(!silent){await PN().unregister();LS.s('fcmon','0')}}catch(e){}
+    if(!silent){toast('Notifikasi dimatikan','ok');pushRender()}return}
   try{const sub=await pushGet();if(sub){await sb.rpc('unregister_push',{p_endpoint:sub.endpoint});if(!silent)await sub.unsubscribe()}}catch(e){}
   if(!silent){toast('Notifikasi dimatikan','ok');pushRender()}}
-async function pushSync(){try{if(!pushOK()||Notification.permission!=='granted')return;const sub=await pushGet();if(sub)await pushSave(sub)}catch(e){}}
+async function pushSync(){if(NATIVE){if(LS.g('fcmon')==='1')try{await nativeBind();await PN().register()}catch(e){}return}try{if(!pushOK()||Notification.permission!=='granted')return;const sub=await pushGet();if(sub)await pushSave(sub)}catch(e){}}
 async function pushRender(){
   const el=$('pushbox');if(!el)return;
+  if(NATIVE){const on=LS.g('fcmon')==='1';el.innerHTML=`<div class="kv">${I('bell')}<div><span>Notifikasi kasus</span><b>${on?'Aktif di perangkat ini':'Belum aktif'}</b></div></div>${on?`<button class="btn ghost block" onclick="pushOff()">${I('bell-off')}Matikan notifikasi</button>`:`<button class="btn block" onclick="pushOn()">${I('bell')}Aktifkan notifikasi</button>`}`;return}
   if(!VAPID_PUBLIC){el.innerHTML='';return}
   if(isIOS&&!standalone()){el.innerHTML=`<div class="note">${I('info')}<span>Di iPhone, tambahkan aplikasi ke <b>Layar Utama</b> lewat tombol Bagikan, lalu buka dari ikon itu untuk mengaktifkan notifikasi.</span></div>`;return}
   if(!pushOK()){el.innerHTML=`<div class="note">${I('info')}<span>Browser ini belum mendukung notifikasi.</span></div>`;return}
   const sub=await pushGet(),on=!!sub&&Notification.permission==='granted',den=Notification.permission==='denied';
   el.innerHTML=`<div class="kv">${I('bell')}<div><span>Notifikasi kasus</span><b>${on?'Aktif di perangkat ini':den?'Diblokir di browser':'Belum aktif'}</b></div></div>${on?`<button class="btn ghost block" onclick="pushOff()">${I('bell-off')}Matikan notifikasi</button>`:den?'':`<button class="btn block" onclick="pushOn()">${I('bell')}Aktifkan notifikasi</button>`}`}
 function pushAsk(){
-  if(!pushOK()||Notification.permission!=='default'||LS.g('pushask')||(isIOS&&!standalone()))return;LS.s('pushask','1');
+  if(NATIVE?(LS.g('fcmon')==='1'||LS.g('pushask')):(!pushOK()||Notification.permission!=='default'||LS.g('pushask')||(isIOS&&!standalone())))return;LS.s('pushask','1');
   const m=document.createElement('div');m.id='rfm';m.className='rfm';m.setAttribute('role','dialog');m.setAttribute('aria-modal','true');
   m.innerHTML=`<div class="rfb"><div class="rfi" style="background:var(--pri-t);color:var(--pri)">${I('bell')}</div><h2 style="color:var(--ink)">Aktifkan notifikasi?</h2><p style="text-align:center">Dapatkan pemberitahuan kasus baru, balasan, dan hasil rujukan, bahkan saat aplikasi tertutup. Isinya tidak memuat data pasien.</p><button type="button" class="btn block" onclick="rfClose();pushOn()">${I('bell')}Aktifkan</button><button type="button" class="btn ghost block" onclick="rfClose()">Nanti saja</button></div>`;
   document.body.appendChild(m)}
@@ -967,8 +1053,9 @@ const addSession=async()=>{
       toast('Membuat link Google Meet…');
       link=await gMeet({judul:v('sj'),topik:v('st'),skp:+v('sk')||0,mulai,menit});
     }
-    const row={judul:v('sj'),waktu:mulai.toISOString(),link,skp:+v('sk')||0,topik:v('st'),durasi:menit};
+    const row={judul:v('sj'),waktu:mulai.toISOString(),link,skp:+v('sk')||0,topik:v('st'),durasi:menit,notif:$('sn')?$('sn').value:'semua'};
     let r=await sb.from('sessions').insert(row);
+    if(r.error&&/notif/i.test(r.error.message||'')){delete row.notif;r=await sb.from('sessions').insert(row)}
     if(r.error&&/durasi/i.test(r.error.message||'')){delete row.durasi;r=await sb.from('sessions').insert(row)}
     if(r.error)throw r.error;
     inv();toast(auto?'Sesi tersimpan dengan link Google Meet':'Sesi tersimpan','ok');go(tab);
@@ -989,6 +1076,118 @@ const addComment=async(id,mode)=>{const t=$('cm').value.trim();if(!t)return toas
   if(isH())await sb.from('cases').update({status:'dibahas'}).eq('id',id).eq('status','baru');inv();
   if(mode==='ref'){cur=id;rujukJenis='darurat';return go('rujukBaru')}
   endScroll=true;go('kasusDetail')};
+
+
+const fsFilter=()=>{const q=($('fq').value||'').toLowerCase().trim();let n=0;document.querySelectorAll('#fl .fsk').forEach(d=>{const ok=!q||d.dataset.n.includes(q);d.hidden=!ok;if(ok)n++});const e=$('fn');if(e)e.hidden=n>0};
+/* --- Laporan kasus (PDF) --- */
+const loadJs=src=>new Promise((ok,no)=>{const e=document.createElement('script');e.src=src;e.onload=ok;e.onerror=()=>no(new Error('Pustaka PDF gagal dimuat. Periksa koneksi internet lalu coba lagi.'));document.head.appendChild(e)});
+async function pdfLib(){if(!(window.jspdf&&window.jspdf.jsPDF))await loadJs('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
+  if(!window.jspdf.jsPDF.API.autoTable)await loadJs('https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js');return window.jspdf.jsPDF}
+const pt=x=>String(x??'').replace(/[‘’]/g,"'").replace(/[“”]/g,'"').replace(/[–—]/g,'-').replace(/→/g,'->').replace(/…/g,'...').replace(/[^\x09\x0A\x0D\x20-\x7E -ÿ]/g,'');
+const logoURL=()=>new Promise(ok=>{const i=new Image();i.onload=()=>{try{const c=document.createElement('canvas');c.width=c.height=96;c.getContext('2d').drawImage(i,0,0,96,96);ok(c.toDataURL('image/png'))}catch(e){ok(null)}};i.onerror=()=>ok(null);i.src='icons/logo-96.png'});
+async function simpanPdf(doc,nama){
+  if(NATIVE&&Capacitor.Plugins.Filesystem&&Capacitor.Plugins.Share){
+    const b64=doc.output('datauristring').split(',')[1];
+    const w=await Capacitor.Plugins.Filesystem.writeFile({path:nama,data:b64,directory:'CACHE'});
+    await Capacitor.Plugins.Share.share({title:nama,url:w.uri,dialogTitle:'Simpan atau bagikan laporan'});return}
+  doc.save(nama)}
+async function makeLaporan(){
+  const btn=$('lpb');if(btn)btn.disabled=true;
+  try{
+    const set={...KOP,str:v('lk4')};LS.s('lapset',JSON.stringify(set));
+    const d1=v('lp1'),d2=v('lp2'),sts=$('lps').value,detail=$('lpd').checked,all=isH();
+    toast('Menyiapkan laporan…');
+    let q=sb.from('cases').select('*,profiles(nama,faskes,kabupaten),case_comments(user_id,isi,created_at,profiles(nama,role,faskes)),referrals(jenis,status,created_at,jadwal_klinik,pemeriksaan)').order('created_at',{ascending:true});
+    if(!all)q=q.eq('user_id',me.id);
+    if(d1)q=q.gte('created_at',new Date(d1+'T00:00:00').toISOString());
+    if(d2)q=q.lte('created_at',new Date(d2+'T23:59:59').toISOString());
+    if(sts!=='semua')q=q.eq('status',sts);
+    const C=ck(await q);if(!C.length){toast('Tidak ada kasus pada cakupan ini.','err');return}
+    const J=await pdfLib(),doc=new J({unit:'mm',format:'a4'}),W=210,M=15,logo=await logoURL(),now=new Date();
+    const tg=x=>new Date(x).toLocaleDateString('id-ID',{day:'2-digit',month:'long',year:'numeric'}),tw=x=>new Date(x).toLocaleString('id-ID',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}).replace('.',':');
+    const NAVY=[11,107,132];
+    // Kop
+    if(logo)doc.addImage(logo,'PNG',M,11,20,20);
+    doc.setTextColor(20,30,40);doc.setFont('helvetica','bold').setFontSize(15).text(pt((set.inst||KLINIK).toUpperCase()),W/2+8,17,{align:'center'});
+    doc.setFont('helvetica','normal').setFontSize(9).text('Cardio Link - Jejaring Telekonsultasi Kardiovaskular',W/2+8,22.5,{align:'center'});
+    doc.setFontSize(8).setTextColor(90,100,110);let ky=27;
+    if(set.alamat){doc.text(pt(set.alamat),W/2+8,ky,{align:'center'});ky+=4.2}
+    if(set.kontak){doc.text(pt(set.kontak),W/2+8,ky,{align:'center'})}
+    doc.setDrawColor(...NAVY).setLineWidth(.9).line(M,35,W-M,35);doc.setLineWidth(.25).line(M,36.4,W-M,36.4);
+    // Judul
+    const no='LK/CL/'+now.toISOString().slice(0,10).replace(/-/g,'')+'/'+String(now.getHours()).padStart(2,'0')+String(now.getMinutes()).padStart(2,'0');
+    doc.setTextColor(20,30,40).setFont('helvetica','bold').setFontSize(12.5).text('LAPORAN KASUS TELEKONSULTASI KARDIOVASKULAR',W/2,45,{align:'center'});
+    doc.setFont('helvetica','normal').setFontSize(9).text('Nomor: '+no,W/2,50,{align:'center'});
+    const per=d1||d2?(d1?tg(d1):'awal')+' s.d. '+(d2?tg(d2):tg(now)):'Seluruh periode';
+    const info=[['Cakupan',all?'Seluruh kasus dari semua dokter FKTP':'Kasus yang diajukan oleh '+prof.nama],['Periode',per],['Status kasus',sts==='semua'?'Semua status':STS[sts]],['Disusun oleh',prof.nama+' ('+(ROLE[prof.role]||'')+(prof.faskes?', '+prof.faskes:'')+')'+(set.str?' - STR/SIP '+set.str:'')],['Tanggal cetak',tg(now)+', '+jam(now)+' WIB']];
+    doc.autoTable({startY:54,body:info.map(r=>r.map(pt)),theme:'plain',styles:{fontSize:9,cellPadding:{top:.8,bottom:.8,left:0,right:2}},columnStyles:{0:{cellWidth:32,fontStyle:'bold'}},margin:{left:M,right:M}});
+    // Ringkasan
+    const n=f=>C.filter(f).length,seg1=C.filter(c=>c.urgensi==='segera'||(Array.isArray(c.redflag)&&c.redflag.length)).length;
+    doc.autoTable({startY:doc.lastAutoTable.finalY+3,head:[['Total kasus','Menunggu','Dibahas','Selesai','Segera / red flag','Ada rujukan']],body:[[C.length,n(c=>c.status==='baru'),n(c=>c.status==='dibahas'),n(c=>c.status==='selesai'),seg1,n(c=>(c.referrals||[]).length)]],theme:'grid',styles:{fontSize:10,halign:'center'},headStyles:{fillColor:NAVY,fontSize:8,halign:'center'},margin:{left:M,right:M}});
+    // A. Rekap
+    let y=doc.lastAutoTable.finalY+8;doc.setFont('helvetica','bold').setFontSize(10.5).setTextColor(...NAVY).text('A. Rekapitulasi Kasus',M,y);
+    const spes=c=>[...new Set((c.case_comments||[]).filter(m=>m.profiles?.role==='hub').map(m=>m.profiles.nama))].join(', ')||'-';
+    doc.autoTable({startY:y+2,head:[['No','Tanggal','Pasien','Judul / Diagnosis','Dokter FKTP (pengaju)','Dokter Spesialis penanggap','Status']],
+      body:C.map((c,i)=>[i+1,tg(c.created_at),[c.kode_pasien||'-',[c.usia&&c.usia+' th',c.jk].filter(Boolean).join(', '),c.no_id&&('No. '+c.no_id)].filter(Boolean).join('\n'),c.judul+(c.diagnosis?'\n'+c.diagnosis:''),(c.profiles?.nama||'-')+(c.profiles?.faskes?'\n'+c.profiles.faskes:''),spes(c),(STS[c.status]||c.status)+(c.urgensi==='segera'?'\n(SEGERA)':'')].map(pt)),
+      theme:'grid',styles:{fontSize:7.5,cellPadding:1.6,valign:'top',lineColor:[190,200,208]},headStyles:{fillColor:NAVY,fontSize:7.5},alternateRowStyles:{fillColor:[247,250,251]},
+      columnStyles:{0:{cellWidth:8,halign:'center'},1:{cellWidth:21},2:{cellWidth:27},3:{cellWidth:44},4:{cellWidth:31},5:{cellWidth:31},6:{cellWidth:18}},margin:{left:M,right:M}});
+    // B. Rincian
+    if(detail){
+      doc.addPage();y=18;doc.setFont('helvetica','bold').setFontSize(10.5).setTextColor(...NAVY).text('B. Rincian Kasus dan Diskusi',M,y);y+=3;
+      C.forEach((c,i)=>{
+        if(y>245){doc.addPage();y=18}
+        const rf=(Array.isArray(c.redflag)?c.redflag:[]).map(k=>RFM[k]||k).join('; ');
+        const rj=(c.referrals||[]).map(r=>(r.jenis==='darurat'?'Darurat':'Pemeriksaan lanjutan')+' ('+(RS[r.status]?RS[r.status][0]:r.status)+(r.jadwal_klinik?', jadwal '+tw(r.jadwal_klinik):'')+')').join('; ');
+        const kv=[['Tanggal',tw(c.created_at)],['Nama pasien',c.kode_pasien],['Usia / jenis kelamin',[c.usia&&c.usia+' th',c.jk].filter(Boolean).join(' / ')],['No. BPJS / NIK',c.no_id],['Alamat',c.alamat],['No. HP',c.no_hp],['Kontrol terakhir di '+KLINIK,c.kontrol_terakhir&&tg(c.kontrol_terakhir)],['TD terakhir',c.td],['Diagnosis',c.diagnosis],['Ringkasan klinis',c.ringkasan],['Pertanyaan',c.pertanyaan],['Kendala di FKTP',c.kendala],['Tanda bahaya',rf],['Rujukan',rj],['Dokter FKTP',(c.profiles?.nama||'-')+(c.profiles?.faskes?', '+c.profiles.faskes:'')+(c.profiles?.kabupaten?', '+c.profiles.kabupaten:'')],['Dokter Spesialis',spes(c)],['Status',(STS[c.status]||c.status)]].filter(r=>r[1]).map(r=>r.map(pt));
+        doc.autoTable({startY:y,head:[[{content:'Kasus '+(i+1)+': '+c.judul,colSpan:2}]],body:kv,theme:'grid',styles:{fontSize:8.5,cellPadding:1.8,lineColor:[200,208,214]},headStyles:{fillColor:[232,243,246],textColor:[11,60,76],fontSize:9.5},columnStyles:{0:{cellWidth:34,fontStyle:'bold',fillColor:[248,250,251]}},margin:{left:M,right:M}});
+        const M2=c.case_comments||[];
+        if(M2.length){doc.autoTable({startY:doc.lastAutoTable.finalY+1.5,head:[['Waktu','Pengirim','Isi diskusi']],body:M2.sort((a,b)=>new Date(a.created_at)-new Date(b.created_at)).map(m=>[tw(m.created_at),(m.profiles?.nama||'-')+'\n'+(ROLE[m.profiles?.role]||''),m.isi].map(pt)),theme:'striped',styles:{fontSize:8,cellPadding:1.5,valign:'top'},headStyles:{fillColor:[110,130,142],fontSize:8},columnStyles:{0:{cellWidth:30},1:{cellWidth:40}},margin:{left:M,right:M}})}
+        y=doc.lastAutoTable.finalY+8});
+    }
+    // Tanda tangan
+    y=doc.lastAutoTable.finalY+12;if(y>235){doc.addPage();y=22}
+    const lok=(prof.kabupaten||'').replace(/^(kab\.?|kabupaten|kota)\s+/i,'');
+    doc.setFont('helvetica','normal').setFontSize(9.5).setTextColor(20,30,40);
+    doc.text('Mengetahui,',M+10,y);doc.text(pt((lok?lok+', ':'')+tg(now)),W-M-60,y);
+    doc.text('Pembuat laporan,',W-M-60,y+5.5);
+    doc.text('(................................)',M+10,y+30);
+    doc.setFont('helvetica','bold').text(pt(prof.nama),W-M-60,y+30);doc.setFont('helvetica','normal').setFontSize(8.5);
+    doc.text(pt((ROLE[prof.role]||'')+(prof.faskes?' - '+prof.faskes:'')),W-M-60,y+34.5);if(set.str)doc.text(pt('STR/SIP: '+set.str),W-M-60,y+39);
+    // Footer semua halaman
+    const tp=doc.internal.getNumberOfPages();
+    for(let i=1;i<=tp;i++){doc.setPage(i);doc.setDrawColor(190,200,208).setLineWidth(.2).line(M,284,W-M,284);doc.setFont('helvetica','normal').setFontSize(7.5).setTextColor(110,120,130);
+      doc.text('RAHASIA - berisi data kesehatan pasien. Hanya untuk keperluan pelayanan dan pembinaan. Dokumen dibuat melalui aplikasi Cardio Link.',M,288);doc.text('Halaman '+i+' dari '+tp,W-M,288,{align:'right'});doc.text(no,W-M,292,{align:'right'})}
+    await simpanPdf(doc,'Laporan-Kasus-CardioLink-'+now.toISOString().slice(0,10)+'.pdf');
+    toast('Laporan siap','ok');
+  }catch(e){toast(e.message||'Gagal membuat laporan','err')}
+  finally{if(btn)btn.disabled=false}}
+
+/* --- Edit & hapus kasus / balasan --- */
+const edClose=()=>{const m=$('edm');if(m)m.remove()};
+function edModal(title,fields,vals,onSave){edClose();const m=document.createElement('div');m.id='edm';m.className='rfm';m.setAttribute('role','dialog');m.setAttribute('aria-modal','true');
+  m.innerHTML=`<div class="edb"><h2>${esc(title)}</h2>${fields.map(([id,lb,ta])=>F('ed_'+id,lb,{ta:ta,rows:3,opt:1})).join('')}<div class="bt"><button type="button" class="btn ghost" id="edx">Batal</button><button type="button" class="btn" id="eds">Simpan</button></div></div>`;
+  document.body.appendChild(m);fields.forEach(([id])=>{$('ed_'+id).value=vals[id]??''});
+  $('edx').onclick=edClose;$('eds').onclick=async()=>{$('eds').disabled=true;const o={};fields.forEach(([id])=>o[id]=$('ed_'+id).value.trim());const ok=await onSave(o);if(ok)edClose();else $('eds').disabled=false}}
+const editCase=async id=>{const r=await sb.from('cases').select('judul,diagnosis,ringkasan,pertanyaan,kendala,td').eq('id',id).single();if(r.error)return toast(r.error.message,'err');
+  edModal('Edit kasus',[['judul','Judul kasus'],['td','TD terakhir'],['diagnosis','Diagnosis',1],['ringkasan','Ringkasan klinis',1],['pertanyaan','Pertanyaan untuk spesialis',1],['kendala','Kendala di FKTP',1]],r.data,async o=>{
+    if(!o.judul){toast('Judul tidak boleh kosong.','err');return false}
+    const u=await sb.from('cases').update(o).eq('id',id).select('id');if(u.error){toast(u.error.message,'err');return false}
+    if(!u.data||!u.data.length){toast('Tidak punya izin mengubah kasus ini.','err');return false}
+    inv();toast('Kasus diperbarui','ok');go('kasusDetail');return true})};
+const delCase=async id=>{if(!confirm('Hapus kasus ini beserta seluruh balasan dan rujukannya? Tindakan ini tidak bisa dibatalkan.'))return;
+  const r=await sb.from('cases').delete().eq('id',id).select('id');if(r.error)return toast(r.error.message,'err');
+  if(!r.data||!r.data.length)return toast('Tidak punya izin menghapus kasus ini.','err');
+  inv();toast('Kasus dihapus','ok');go('kasus')};
+const editCm=async(id,cid)=>{const r=await sb.from('case_comments').select('isi').eq('id',id).single();if(r.error)return toast(r.error.message,'err');
+  edModal('Edit balasan',[['isi','Isi balasan',1]],r.data,async o=>{
+    if(!o.isi){toast('Balasan tidak boleh kosong.','err');return false}
+    const u=await sb.from('case_comments').update({isi:o.isi,edited_at:new Date().toISOString()}).eq('id',id).select('id');if(u.error){toast(u.error.message,'err');return false}
+    if(!u.data||!u.data.length){toast('Tidak punya izin mengubah balasan ini.','err');return false}
+    inv();toast('Balasan diperbarui','ok');go('kasusDetail');return true})};
+const delCm=async id=>{if(!confirm('Hapus balasan ini?'))return;
+  const r=await sb.from('case_comments').delete().eq('id',id).select('id');if(r.error)return toast(r.error.message,'err');
+  if(!r.data||!r.data.length)return toast('Tidak punya izin menghapus balasan ini.','err');
+  inv();toast('Balasan dihapus','ok');go('kasusDetail')};
 const setStatus=async(id,st)=>done(await sb.from('cases').update({status:st}).eq('id',id),'kasusDetail','Status diperbarui');
 const addScreen=async()=>{if(!v('gs')||!v('gd'))return toast('Isi tekanan darah.','err');done(await sb.from('screenings').insert({wilayah:v('gw'),usia:+v('gu')||null,sistol:+v('gs'),diastol:+v('gd'),merokok:$('gm').checked,gula:v('gg'),garam:v('gh'),patuh_obat:v('gp')}),null,'Data skrining tersimpan')};
 const setUser=async(id,st)=>{const el=$('r'+id),u={status:st};if(el)u.role=el.value;done(await sb.from('profiles').update(u).eq('id',id),null,st==='approved'?'Akses disimpan':'Akses dicabut')};
